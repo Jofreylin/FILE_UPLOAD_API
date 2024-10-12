@@ -1,7 +1,7 @@
 
 # File Upload API
 
-This is a .NET 7-based File Upload API, designed with the repository pattern and abstract factory to support various upload services.
+This is a .NET 7-based File Upload REST API, designed with the repository pattern and abstract factory to support various upload services.
 
 ## Features
 
