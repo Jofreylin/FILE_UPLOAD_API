@@ -1,7 +1,7 @@
 
 # File Upload API
 
-This is a .NET 7-based File Upload API, designed with the repository pattern and abstract factory to support various upload services.
+This is a .NET 7-based File Upload REST API, designed with the repository pattern and abstract factory to support various upload services.
 
 ## Features
 
@@ -44,7 +44,7 @@ This is a .NET 7-based File Upload API, designed with the repository pattern and
    This project uses a **database-first** approach. If you make changes to the database schema, use the following scaffolding command to update the models:
 
    ```bash
-   dotnet ef dbcontext scaffold Name=ConnectionStrings:DBConnection Microsoft.EntityFrameworkCore.SqlServer --output-dir Models --force --data-annotations --project ./FILE_UPLOAD_API --context "DocApiContext"
+   dotnet ef dbcontext scaffold Name=ConnectionStrings:DBConnection Microsoft.EntityFrameworkCore.SqlServer --output-dir Models --force --data-annotations --project ./FILE_UPLOAD_API --context "DocApiContext" --context-dir Context
    ```
 
 5. Update the connection string and storage configurations in `appsettings.json`:
