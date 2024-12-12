@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace FILE_UPLOAD_API.Models;
 
 [Table("SavedFiles", Schema = "XDMS")]
-[Index("FileName", Name = "UQ__SavedFil__589E6EEC300A9C4F", IsUnique = true)]
+[Index("FileName", Name = "UQ__SavedFil__589E6EECBE606C09", IsUnique = true)]
 public partial class SavedFile
 {
     [Key]

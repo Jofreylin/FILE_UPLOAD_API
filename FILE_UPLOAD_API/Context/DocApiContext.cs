@@ -22,6 +22,8 @@ public partial class DocApiContext : DbContext
 
     public virtual DbSet<SavedFile> SavedFiles { get; set; }
 
+    public virtual DbSet<ServicesLog> ServicesLogs { get; set; }
+
     public virtual DbSet<StorageType> StorageTypes { get; set; }
 
     public virtual DbSet<ViewGetDocumentCategory> ViewGetDocumentCategories { get; set; }
@@ -33,25 +35,25 @@ public partial class DocApiContext : DbContext
     public virtual DbSet<ViewGetStorageType> ViewGetStorageTypes { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Name=ConnectionStrings:XDMSConnection");
+        => optionsBuilder.UseSqlServer("Name=ConnectionStrings:DBConnection");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<DocumentCategory>(entity =>
         {
-            entity.HasKey(e => e.CategoryId).HasName("PK__Document__19093A0B53CA90BD");
+            entity.HasKey(e => e.CategoryId).HasName("PK__Document__19093A0BE46435FC");
 
             entity.Property(e => e.CategoryId).ValueGeneratedNever();
             entity.Property(e => e.CreationDate).HasDefaultValueSql("(getdate())");
 
             entity.HasOne(d => d.Section).WithMany(p => p.DocumentCategories)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__DocumentC__Secti__5BDA1BFF");
+                .HasConstraintName("FK__DocumentC__Secti__48CFD27E");
         });
 
         modelBuilder.Entity<DocumentSection>(entity =>
         {
-            entity.HasKey(e => e.SectionId).HasName("PK__Document__80EF08722381F5F7");
+            entity.HasKey(e => e.SectionId).HasName("PK__Document__80EF08729D6120AB");
 
             entity.Property(e => e.SectionId).ValueGeneratedNever();
             entity.Property(e => e.CreationDate).HasDefaultValueSql("(getdate())");
@@ -59,16 +61,23 @@ public partial class DocApiContext : DbContext
 
         modelBuilder.Entity<SavedFile>(entity =>
         {
-            entity.HasKey(e => e.FileId).HasName("PK__SavedFil__6F0F98BF21757C86");
+            entity.HasKey(e => e.FileId).HasName("PK__SavedFil__6F0F98BF3F58B6CE");
 
             entity.Property(e => e.CreationDate).HasDefaultValueSql("(getdate())");
 
-            entity.HasOne(d => d.DocumentCategory).WithMany(p => p.SavedFiles).HasConstraintName("FK__SavedFile__Docum__4FFE54FF");
+            entity.HasOne(d => d.DocumentCategory).WithMany(p => p.SavedFiles).HasConstraintName("FK__SavedFile__Docum__49C3F6B7");
+        });
+
+        modelBuilder.Entity<ServicesLog>(entity =>
+        {
+            entity.HasKey(e => e.LogId).HasName("PK__Services__5E548648018C8685");
+
+            entity.Property(e => e.CreateDate).HasDefaultValueSql("(getdate())");
         });
 
         modelBuilder.Entity<StorageType>(entity =>
         {
-            entity.HasKey(e => e.TypeId).HasName("PK__StorageT__516F03B563A691E2");
+            entity.HasKey(e => e.TypeId).HasName("PK__StorageT__516F03B5E5A2C946");
 
             entity.Property(e => e.TypeId).ValueGeneratedNever();
             entity.Property(e => e.CreationDate).HasDefaultValueSql("(getdate())");
